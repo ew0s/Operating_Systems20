@@ -22,10 +22,7 @@ then
             then
                 if [[ ReadyFuncLib -eq 1 ]]
                 then
-                    echo fine
-                    result=1
-                    result=$(calc $2 $3 $4 )
-                    echo "$result"
+                    echo $(calc $2 $3 $4 )
                 fi
             else
                 echo "Invalid parameters count for calc module. Please try again."
