@@ -2,17 +2,18 @@
 
 function calc
 {
-    case "$2" in
+    case "$1" in
         "sum")
-            echo $( $3 + $4 );;
+            echo found
+            echo $(( $2 + $3 ));;
         "sub")
-            echo $( $3 - $4 );;
+            echo $(( $2 - $3 ));;
         "mul")
-            echo $( $3 * $4 );;
+            echo $(( $2 * $3 ));;
         "div")
-            echo $( $3 / $4 );;
+            echo $(( $2 / $3 ));;
     esac
 }
 
-result=$(calc $2 $3 $4)
+result=$(calc $1 $2 $3)
 echo "$result"
