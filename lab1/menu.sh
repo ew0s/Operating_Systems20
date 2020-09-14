@@ -42,23 +42,35 @@ then
                 if [[ ReadyFuncLib -eq 1 ]]
                 then
                     echo $(calc $2 $3 $4 )
+                else
+                    echo "Unable to use $1 module. Module disengaged."
                 fi
             else
-                echo "Invalid parameters count for calc module. Please try again."
+                echo "Invalid parameters count for $1 module. Please try again."
             fi;;
         "search")
             if [[ $# -eq 3 ]]
             then
-                (search $2 $3)
+                if [[ ReadySearchLib -eq 1 ]]
+                then
+                    (search $2 $3)
+                else
+                    echo "Unable to use $1 module. Module disengaged."
+                fi
             else  
-                echo "invalid parameters count for search module. please try again."
+                echo "invalid parameters count for $1 module. please try again."
             fi;;
         "reverse")
             if [[ $# -eq 3 ]]
             then
-                (reverse $2 $3)
+                if [[ ReadyReverseLib -eq 1 ]]
+                then
+                    (reverse $2 $3)
+                else
+                    echo "Unable to use $1 module. Module disengaged."
+                fi
             else
-                echo "invalid parameters count for reverse module. please try again."
+                echo "invalid parameters count for $1 module. please try again."
             fi;;
     esac
 else
