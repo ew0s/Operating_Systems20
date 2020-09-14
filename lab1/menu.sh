@@ -1,5 +1,8 @@
 #!/bin/bash
+
 ReadyFuncLib=0
+ReadySearchLib=0
+ReadyReverseLib=0
 
 function CheckScripts
 {
@@ -9,6 +12,22 @@ function CheckScripts
         . FuncLib.sh
     else
         echo "No scripts found for calc module. Module disangaged."
+    fi
+
+    if [[ -s SearchLib.sh ]]
+    then
+        ReadySearchLib=1
+        . SearchLib.sh
+    else
+        echo "No scripts found for search module. Module disangaged."
+    fi
+
+    if [[ -s ReverseLib.sh ]]
+    then
+        ReadyReverseLib=1
+        . ReverseLib.sh
+    else
+        echo "No scripts found for reverse module. Module disangaged."
     fi
 }
 
@@ -26,6 +45,20 @@ then
                 fi
             else
                 echo "Invalid parameters count for calc module. Please try again."
+            fi;;
+        "search")
+            if [[ $# -eq 3 ]]
+            then
+                (search $2 $3)
+            else  
+                echo "invalid parameters count for search module. please try again."
+            fi;;
+        "reverse")
+            if [[ $# -eq 3 ]]
+            then
+                (reverse $2 $3)
+            else
+                echo "invalid parameters count for reverse module. please try again."
             fi;;
     esac
 else
