@@ -5,7 +5,7 @@ function help_
     echo "There sholud be some help info."
 }
 
-function ImportScriptsCheckerExist
+function ImportScriptsExist
 {
     local fileName="ImportFiles.sh"
     if [[ -f $fileName ]]; then . $fileName;
@@ -33,7 +33,7 @@ function FirstArgExist()
     fi
 }
 
-ImportScriptsCheckerExist
+ImportScriptsExist
 ImportScripts
 FirstArgExist $1
 
