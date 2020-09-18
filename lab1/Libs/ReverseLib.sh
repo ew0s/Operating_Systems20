@@ -8,9 +8,9 @@ function reverse
         then
             echo "Work on it"
         else
-            echo "Unable to initialize $2 file"
+            echo "Unable to initialize $2 file" >> /dev/stderr
         fi
     else
-        echo "Unable to initialize $1 file"
+        echo "Unable to initialize $1 file" >> /dev/stderr
     fi
 }

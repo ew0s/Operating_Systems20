@@ -6,7 +6,7 @@ function search
     then
         grep -r "$2" $1
     else
-        echo "Unable to found $1 directory"
+        echo "Unable to found $1 directory" >> /dev/stderr
     fi
 }
 
