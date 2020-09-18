@@ -1,18 +1,17 @@
 #!/bin/bash
 
-function ArgsExist
+function _privateArgsExistCalc
 {
     local ArgsCount=$1
     if ! [[ ArgsCount -eq 4 ]]
     then
         echo "Error: calc module contains 4 arguments. Not $ArgsCount." >> /dev/stderr
-        return 1
-    else
-        return 0
+        help_
+        exit -2
     fi
 }
 
-function ArgsCorrect
+function _priavateArgsCorrectCalc
 {
     # $1 - sum/sub/mul/div
     # $2 - lInteger
@@ -25,28 +24,30 @@ function ArgsCorrect
     if ! [[ $switchParameter =~ ^(sum|sub|mul|div)$ ]]
     then
         echo "Error: switchParameter should be like sum/sub/mul/div. Not $switchParameter." >> /dev/stderr
-        return 1; 
+        help_
+        exit -12
     fi
 
     if ! [[ $lParameter =~ ^-?[[:digit:]]+$ && ! $lParameter =~ ^-0$ ]]
     then 
         echo "Error: lParameter in $switchParameter should be integer. Not $lParameter." >> /dev/stderr
-        return 1;
+        help_
+        exit -15
     fi
 
     if ! [[ $rParameter =~ ^-?[[:digit:]]+$ && ! $rParameter =~ ^-0$ ]]
     then
         echo "Error: rParameter in $switchParameter should be integer. Not $rParameter." >> /dev/stderr
-        return 1;
+        help_
+        exit -15
     fi
-
-    return 0
 }
 
 function CalcMouduleReady
 {
-    if ! ArgsExist $1; then return 1; fi
-    if ! ArgsCorrect $2 $3 $4; then return 1; fi
+   _privateArgsExistCalc $1
+   _priavateArgsCorrectCalc $2 $3 $4
+   return 0
 }
 
 function _privateDivision
