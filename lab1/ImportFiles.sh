@@ -7,7 +7,7 @@ function require()
     then
         return 0
     else
-        echo "Warning: unable to find $ScriptName. Module disangaged." >> /dev/stderr && return 1
+        echo "Warning: unable to find $ScriptName. Module disangaged." >> /dev/stderr && return -2
     fi
 }
 
