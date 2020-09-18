@@ -19,7 +19,6 @@ function _privateImport()
 
 function ImportScripts()
 {
-    _privateImport ImportFiles.sh
     _privateImport Libs/CalcLib.sh
     _privateImport Libs/ReverseLib.sh
     _privateImport Libs/SearchLib.sh
