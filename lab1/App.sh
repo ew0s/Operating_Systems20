@@ -42,7 +42,7 @@ case $1 in
         # $2 - sum/sub/mul/div
         # $3 - left integer parameter
         # $4 - right integer parameter
-        if require Libs/CalcLib.sh; then calc $# $2 $3 $4; fi;;
+        if require Libs/CalcLib.sh; then calc $2 $3 $4; fi;;
     "search")
         # $2 - directory where to search
         # $3 - regular expression

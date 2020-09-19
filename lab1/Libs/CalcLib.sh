@@ -3,9 +3,9 @@
 function _privateArgsExistCalc
 {
     local ArgsCount=$1
-    if ! [[ ArgsCount -eq 4 ]]
+    if ! [[ ArgsCount -eq 3 ]]
     then
-        echo "Error: calc module contains 4 arguments. Not $ArgsCount." >> /dev/stderr
+        echo "Error: calc module contains 3 arguments. Not $ArgsCount." >> /dev/stderr
         help_
         exit -2
     fi
@@ -45,9 +45,8 @@ function _priavateArgsCorrectCalc
 
 function CalcMouduleReady
 {
-   _privateArgsExistCalc $1
-   _priavateArgsCorrectCalc $2 $3 $4
-   return 0
+   _privateArgsExistCalc $#
+   _priavateArgsCorrectCalc $1 $2 $3
 }
 
 function _privateDivision
@@ -59,9 +58,8 @@ function _privateDivision
         echo "Error: division by 0 caught. Please try again"
         help_
         exit -1
-    else
-        return $(( $lParameter / $rParameter ))
     fi
+    echo $(( $lParameter / $rParameter ))
 }
 
 function _privateChooseToCalc
@@ -80,5 +78,5 @@ function _privateChooseToCalc
 
 function calc
 {
-    if CalcMouduleReady $1 $2 $3 $4; then _privateChooseToCalc $2 $3 $4; fi
+    if CalcMouduleReady $1 $2 $3; then _privateChooseToCalc $1 $2 $3; fi
 }
