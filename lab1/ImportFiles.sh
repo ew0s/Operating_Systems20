@@ -22,4 +22,5 @@ function ImportScripts()
     _privateImport Libs/CalcLib.sh
     _privateImport Libs/ReverseLib.sh
     _privateImport Libs/SearchLib.sh
+    _privateImport Libs/StrLenLib.sh
 }

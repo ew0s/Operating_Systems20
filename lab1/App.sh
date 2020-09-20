@@ -25,9 +25,9 @@ function FirstArgExist()
         exit -5
     fi
 
-    if ! [[ $1 =~ ^(calc|search|reverse)$ ]]
+    if ! [[ $1 =~ ^(calc|search|reverse|strlen)$ ]]
     then
-        echo "Error: first argument should be like (calc|search|reverse). Not $1." > /dev/stderr
+        echo "Error: first argument should be like calc/search/reverse/strlen. Not $1." > /dev/stderr
         help_
         exit -6
     fi
@@ -51,4 +51,7 @@ case $1 in
         # $2 - file to read from
         # $3 - file to write to
         if require Libs/ReverseLib.sh; then reverse $2 $3; fi;;
+    "strlen")
+        # $1 - the string that was given from the terminal
+        if require Libs/StrLenLib.sh; then strlen $2; fi;;
 esac
