@@ -25,9 +25,9 @@ function FirstArgExist()
         exit -5
     fi
 
-    if ! [[ $1 =~ ^(calc|search|reverse|strlen)$ ]]
+    if ! [[ $1 =~ ^(calc|search|reverse|strlen|exit)$ ]]
     then
-        echo "Error: first argument should be like calc/search/reverse/strlen. Not $1." > /dev/stderr
+        echo "Error: first argument should be like calc/search/reverse/strlen/exit. Not $1." > /dev/stderr
         help_
         exit -6
     fi
@@ -54,4 +54,6 @@ case $1 in
     "strlen")
         # $1 - the string that was given from the terminal
         if require Libs/StrLenLib.sh; then strlen $2; fi;;
+    "exit")
+        if require Libs/ExitLib.sh; then exi "$@"; fi;;
 esac

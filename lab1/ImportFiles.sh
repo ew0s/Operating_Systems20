@@ -23,4 +23,5 @@ function ImportScripts()
     _privateImport Libs/ReverseLib.sh
     _privateImport Libs/SearchLib.sh
     _privateImport Libs/StrLenLib.sh
+    _privateImport Libs/ExitLib.sh
 }
