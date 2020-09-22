@@ -7,7 +7,7 @@ function require()
     then
         return 0
     else
-        echo "Warning: unable to find $ScriptName. Module disangaged." >> /dev/stderr && return -2
+        echo "Warning: unable to find $ScriptName. Module disangaged." >> /dev/stderr && return 1
     fi
 }
 
@@ -24,4 +24,5 @@ function ImportScripts()
     _privateImport Libs/SearchLib.sh
     _privateImport Libs/StrLenLib.sh
     _privateImport Libs/ExitLib.sh
+    _privateImport Libs/LogLib.sh
 }
