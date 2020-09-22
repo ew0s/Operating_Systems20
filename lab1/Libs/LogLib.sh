@@ -11,11 +11,14 @@ function _privateLogFilesExist
 
 function _privateLogSets
 {
-    warnings="$(cat /var/log/anaconda/X.log | awk '{if(($3 == ("WW")) && ($1 == "["))print $0}')"
+    warnings="$(cat /var/log/anaconda/X.log | awk '{if(($3 == "(WW)") && ($1 == "["))print $0}')"
+    information="$(cat /var/log/anaconda/X.log | awk '{if(($3 == "(II)") && ($1 == "["))print $0}')"
     echo $warnings 
+    echo $information
 }
 
 function log
 {
     _privateLogFilesExist
+    _privateLogSets
 }
