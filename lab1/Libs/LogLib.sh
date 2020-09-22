@@ -17,8 +17,8 @@ function _privateLogSets
 
 function _privateShowColorLog
 {
-    echo -e "${warnings//"(WW)"/"\e[33mWarning:\e[0m"}"
-    echo -e "${information//"(II)"/"\e[94mInformation:\e[0m"}"
+    echo -e "${warnings//"(WW)"/"\e[1;33mWarning:\e[0m"}"
+    echo -e "${information//"(II)"/"\e[1;34mInformation:\e[0m"}"
 }
 
 function log
