@@ -55,7 +55,7 @@ case $1 in
         # $1 - the string that was given from the terminal
         if require Libs/StrLenLib.sh; then strlen $2; fi;;
     "log")
-        if require Lis/LogLib.sh; then log; fi;;
+        if require Lbis/LogLib.sh; then log; fi;;
     "interactive")
         if require Libs/Interactive/InteractiveLib.sh; then interactive; fi;;
     "help")

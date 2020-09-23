@@ -44,13 +44,6 @@ function _priavateArgsCorrectCalc
     fi
 }
 
-function CalcMouduleReady
-{
-  if ! _privateArgsExistCalc $#; then return 1; fi
-  if ! _priavateArgsCorrectCalc $1 $2 $3; then return 1; fi
-  return 0
-}
-
 function _privateDivision
 {
     local lParameter=$1
@@ -76,6 +69,13 @@ function _privateChooseToCalc
         "div")
             _privateDivision $2 $3;;
     esac
+}
+
+function CalcMouduleReady
+{
+  if ! _privateArgsExistCalc $#; then return 1; fi
+  if ! _priavateArgsCorrectCalc $1 $2 $3; then return 1; fi
+  return 0
 }
 
 function calc
