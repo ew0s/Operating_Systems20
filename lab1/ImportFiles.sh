@@ -25,5 +25,6 @@ function ImportScripts()
     _privateImport Libs/StrLenLib.sh
     _privateImport Libs/ExitLib.sh
     _privateImport Libs/LogLib.sh
-    _privateImport Libs/InteractiveLib.sh
+    _privateImport Libs/Interactive/InteractiveLib.sh
+    _privateImport Libs/Interactive/DisplayInfo.sh
 }
