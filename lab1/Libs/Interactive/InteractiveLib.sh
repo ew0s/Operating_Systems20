@@ -51,23 +51,24 @@ function _privateSearch
     clear
 }
 
+function _privateModuleExecute
+{
+    _privateShow$1Menu
+    read
+    $( echo $1 | awk '{print tolower($0)}') $REPLY
+    _privateWaitUntilKey
+    clear
+}
+
 function _privateChooseTODO
 {
     case $1 in
         "1")
             _privateCalc;;
         "2")
-            _privateSearch;;
+            _privateModuleExecute Search;;
         "3")
-            if require Libs/ReverseLib.sh; then reverse $2 $3; fi;;
-        "4")
-            if require Libs/StrLenLib.sh; then strlen $2; fi;;
-        "5")
-            if require Libs/LogLib.sh; then log; fi;;
-        "6")
-            help_;;
-        "7")
-            exi;;
+            _privateChooseTODO;;
     esac
 }
 

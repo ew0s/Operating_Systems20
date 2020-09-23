@@ -5,8 +5,11 @@ function _privateArgsExistSearch
     if ! [[ $1 -eq 2 ]]
     then
         echo "Error: module search contains 2 arguments. Not $1" >> /dev/stderr
-        exit -2
+        help_
+        if ! [[ InInteractive -eq 0 ]]; then exit -2; else return 1; fi
     fi
+
+    return 0
 }
 
 function _privateIsDirectory
@@ -15,8 +18,10 @@ function _privateIsDirectory
     then
         echo "Error: first argument in search module must be a directory." >> /dev/stderr
         help_
-        exit -6
+        if ! [[ InInteractive -eq 0 ]]; then exit -6; else return 1; fi 
     fi
+
+    return 0
 }
 
 function _privatePremissionCheck
@@ -25,15 +30,17 @@ function _privatePremissionCheck
     then
         echo "Error: premission denied for $1." >> /dev/stderr
         help_
-        exit -2
+        if ! [[ InInteractive -eq 0 ]]; then exit -2; else return 1; fi
     fi
+
+    return 0
 }
 
 function search
 {
-    _privateArgsExistSearch $#
-    _privateIsDirectory $1
-    _privatePremissionCheck $1
+    if ! _privateArgsExistSearch $#; then return; fi
+    if ! _privateIsDirectory $1; then return; fi
+    if ! _privatePremissionCheck $1; then return; fi
     # Redirection errors to the "black hole"
     grep -r "$2" $1 2> /dev/null 1>&1 
 }
