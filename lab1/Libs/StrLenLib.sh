@@ -11,6 +11,5 @@ function _privateArgsExistStrLen
 function strlen
 {
     _privateArgsExistStrLen $#
-    local varLength=${#$1}
-    echo $varLength
+    echo $1 | awk '{print length}'
 }

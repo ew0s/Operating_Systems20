@@ -7,8 +7,9 @@ function _privateArgsExistCalc
     then
         echo "Error: calc module contains 3 arguments. Not $ArgsCount." >> /dev/stderr
         help_
-        exit -2
+        if ! [[ InInteractive -eq 0 ]]; then exit -2; else return 1; fi
     fi
+    return 0
 }
 
 function _priavateArgsCorrectCalc
@@ -25,28 +26,29 @@ function _priavateArgsCorrectCalc
     then
         echo "Error: switchParameter should be like sum/sub/mul/div. Not $switchParameter." >> /dev/stderr
         help_
-        exit -12
+        if ! [[ InInteractive -eq 0 ]]; then exit -12; else return 1; fi
     fi
 
-    if ! [[ $lParameter =~ ^-?[[:digit:]]+$ && ! $lParameter =~ ^-0$ ]]
+    if ! [[ $lParameter =~ ^[-+]?[[:digit:]]+$ && ! $lParameter =~ ^-0$ ]]
     then 
         echo "Error: lParameter in $switchParameter should be integer. Not $lParameter." >> /dev/stderr
         help_
-        exit -15
+        if ! [[ InInteractive -eq 0 ]]; then exit -15; else return 1; fi
     fi
 
-    if ! [[ $rParameter =~ ^-?[[:digit:]]+$ && ! $rParameter =~ ^-0$ ]]
+    if ! [[ $rParameter =~ ^[-+]?[[:digit:]]+$ && ! $rParameter =~ ^-0$ ]]
     then
         echo "Error: rParameter in $switchParameter should be integer. Not $rParameter." >> /dev/stderr
         help_
-        exit -15
+        if ! [[ InInteractive -eq 0 ]]; then exit -15; else return 1; fi
     fi
 }
 
 function CalcMouduleReady
 {
-   _privateArgsExistCalc $#
-   _priavateArgsCorrectCalc $1 $2 $3
+  if ! _privateArgsExistCalc $#; then return 1; fi
+  if ! _priavateArgsCorrectCalc $1 $2 $3; then return 1; fi
+  return 0
 }
 
 function _privateDivision
@@ -57,7 +59,7 @@ function _privateDivision
     then
         echo "Error: division by 0 caught. Please try again"
         help_
-        exit -1
+        if ! [[ InInteractive -eq 0 ]]; then exit -1; else return; fi
     fi
     echo $(( $lParameter / $rParameter ))
 }
@@ -78,5 +80,5 @@ function _privateChooseToCalc
 
 function calc
 {
-    if CalcMouduleReady $1 $2 $3; then _privateChooseToCalc $1 $2 $3; fi
+    if CalcMouduleReady $@; then _privateChooseToCalc $1 $2 $3; fi
 }
