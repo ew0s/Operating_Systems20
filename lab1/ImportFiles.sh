@@ -27,4 +27,5 @@ function ImportScripts()
     _privateImport Libs/LogLib.sh
     _privateImport Libs/Interactive/InteractiveLib.sh
     _privateImport Libs/Interactive/DisplayInfo.sh
+    _privateImport ./GeneralHelp.sh
 }

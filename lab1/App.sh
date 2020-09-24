@@ -11,7 +11,7 @@ function ImportScriptsExist
     if [[ -f $fileName ]]; then . $fileName;
     else
         echo "Fatal error: unable to find $fileName" > /dev/stderr
-        help_
+        generalHelp
         exit -9
     fi
 }
@@ -21,14 +21,14 @@ function FirstArgExist()
     if ! [[ -n $1 ]]
     then
         echo "Error: first argument not exist" > /dev/stderr
-        help_
+        generalHelp
         exit -5
     fi
 
     if ! [[ $1 =~ ^(calc|search|reverse|strlen|log|interactive|help|exit)$ ]]
     then
         echo "Error: first argument should be like calc/search/reverse/strlen/log/interactive/help/exit. Not $1." > /dev/stderr
-        help_
+        generalHelp
         exit -6
     fi
 }
