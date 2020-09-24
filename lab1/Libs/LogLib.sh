@@ -5,7 +5,7 @@ function _privateLogFilesExist
     if ! [[ -e /var/log/anaconda/X.log ]]
     then
         echo "Error: unable to locate /var/log/anaconda/X.log" && help_
-        exit -9
+        if ! [[ InInteractive -eq 0 ]]; then exit -9; else return 1; fi
     fi
 }
 
@@ -23,7 +23,7 @@ function _privateShowColorLog
 
 function log
 {
-    _privateLogFilesExist
+    if ! _privateLogFilesExist; then return; fi
     _privateLogSets
     _privateShowColorLog
 }

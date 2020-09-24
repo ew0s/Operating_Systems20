@@ -6,8 +6,10 @@ function _privateArgsExistReverse
     then
         echo "Error: reverse mode contains 2 arguments. Not $1" >> /dev/stderr
         help_
-        exit -2
+        if ! [[ InInteractive -eq 0 ]]; then exit -2; else return 1; fi
     fi
+
+    return 0
 }
 
 function _privateIsCorrectFiles
@@ -18,15 +20,17 @@ function _privateIsCorrectFiles
     then
         echo "Error: permission denied for $fileToRead. Make sure you giving readable file." >> /dev/stderr
         help_
-        exit -8
+        if ! [[ InInteractive -eq 0 ]]; then exit -8; else return 1; fi
     fi
 
     if ! [[ -w $fileToWrite ]]
     then
         echo "Error: permission denied for $fileToWrite. Make sure you giving writeable file." >> /dev/stderr
         help_
-        exit -9
+        if ! [[ InInteractive -eq 0 ]]; then exit -9; else return 1; fi
     fi
+
+    return 0
 }
 
 function _privateReadAndWrite
@@ -40,7 +44,7 @@ function _privateReadAndWrite
 
 function reverse
 {
-    _privateArgsExistReverse $#
-    _privateIsCorrectFiles $1 $2
+    if ! _privateArgsExistReverse $#; then return; fi
+    if ! _privateIsCorrectFiles $1 $2; then return; fi
     _privateReadAndWrite $1 $2
 }

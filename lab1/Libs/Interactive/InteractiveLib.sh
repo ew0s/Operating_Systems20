@@ -27,29 +27,13 @@ function _privateArgExistInteractive
     return 0
 }
 
-function _privateCalc
+function _privateLogExecute
 {
-    if require Libs/CalcLib.sh
-    then
-        _privateShowCalcMenu
-        read
-        calc $REPLY
-        _privateWaitUntilKey
-    fi
+    log
+    _privateWaitUntilKey
     clear
 }
 
-function _privateSearch
-{ 
-    if require Libs/SearchLib.sh 
-    then
-        _privateShowSearchMenu
-        read
-        search $REPLY
-        _privateWaitUntilKey
-    fi
-    clear
-}
 
 function _privateModuleExecute
 {
@@ -64,11 +48,17 @@ function _privateChooseTODO
 {
     case $1 in
         "1")
-            _privateCalc;;
+            _privateModuleExecute Calc;;
         "2")
             _privateModuleExecute Search;;
         "3")
-            _privateChooseTODO;;
+            _privateModuleExecute Reverse;;
+        "4")
+            _privateModuleExecute StrLen;;
+        "5")
+            _privateLogExecute;;
+        "7")
+            exi;;
     esac
 }
 

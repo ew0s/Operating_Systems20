@@ -4,12 +4,16 @@ function _privateArgsExistStrLen
     then
         echo "Error: strlen module contains 1 argument. Not $1." >> /dev/stderr
         help_
-        exit -2
+        if ! [[ InInteractive -eq 0 ]]; then exit -2; else return 1; fi
     fi
+
+    return 0;
 }
 
 function strlen
 {
-    _privateArgsExistStrLen $#
-    echo $1 | awk '{print length}'
+    if _privateArgsExistStrLen $#
+    then
+        echo $1 | awk '{print length}'
+    fi
 }
