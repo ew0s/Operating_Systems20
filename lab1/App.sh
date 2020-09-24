@@ -36,6 +36,7 @@ function FirstArgExist()
 ImportScriptsExist
 ImportScripts
 FirstArgExist $1
+InInteractive=1
 
 case $1 in
     "calc")
