@@ -36,12 +36,21 @@ function _privatePremissionCheck
     return 0
 }
 
+function _privateGrepSearch
+{
+    if grep -r "$2" $1 2> /dev/null 1>&1;
+    then
+        return
+    else
+        echo -e "NO MATCHES FOUND FOR \"$2\"" >> /dev/stderr
+    fi
+}
+
 function search
 {
     if ! _privateArgsExistSearch $#; then return; fi
     if ! _privateIsDirectory $1; then return; fi
     if ! _privatePremissionCheck $1; then return; fi
-    # Redirection errors to the "black hole"
-    grep -r "$2" $1 2> /dev/null 1>&1 
+    _privateGrepSearch $1 $2
 }
 

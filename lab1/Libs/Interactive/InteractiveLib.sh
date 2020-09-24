@@ -2,7 +2,7 @@
 
 function _privateWaitUntilKey
 {
-    echo "PRESS ANY KEY TO CONTINUE"
+    echo "PRESS ENTER  TO CONTINUE"
     read x
 }
 
@@ -74,6 +74,7 @@ function _privateReadUserData
 
 function interactive
 {
+    clear
     InInteractive=0
     while [[ 1 -eq 1 ]]
     do
