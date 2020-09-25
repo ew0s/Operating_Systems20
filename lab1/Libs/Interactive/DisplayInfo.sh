@@ -17,18 +17,18 @@ function _privateShowMenu
 
 function _privateShowCalcMenu
 {
-    echo "/************ INTERACTIVE-CALC **************/"
-    echo "/--------------------------------------------/"
-    echo "/----Enter one of the following commands-----/"
-    echo "/--------------------------------------------/"
-    echo "/--------- sum lParameter rParameter --------/"
-    echo "/----------sub lParameter rParameter --------/"
-    echo "/--------- div lParameter rParameter --------/"
-    echo "/--------- mul lParameter rParameter --------/"
-    echo "/--------------------------------------------/"
-    echo "/---Where lParameter and rParameter is INT---/"
-    echo "/--------------------------------------------/"
-    echo "/************ INTERACTIVE-CALC **************/"
+    echo "\e[1;31m/************ INTERACTIVE-CALC **************/"
+    echo "\e[1;31m/--------------------------------------------/"
+    echo "\e[33m/----Enter one of the following commands-----/"
+    echo "\e[33m/--------------------------------------------/"
+    echo "\e[1;33m/--------- sum lParameter rParameter --------/"
+    echo "\e[1;33m/----------sub lParameter rParameter --------/"
+    echo "\e[32m/--------- div lParameter rParameter --------/"
+    echo "\e[32m/--------- mul lParameter rParameter --------/"
+    echo "\e[34m/--------------------------------------------/"
+    echo "\e[34m/---Where lParameter and rParameter is INT---/"
+    echo "\e[35m/--------------------------------------------/"
+    echo "\e[35m/************ INTERACTIVE-CALC **************/"
     echo -en "\nEnter one of the gave command to execute module: "
 }
 
