@@ -65,15 +65,15 @@ function _privateShowReverseMenu
 
 function _privateShowStrLenMenu
 {
-    echo "/********** INTERACTIVE-STR_LEN *************/"
-    echo "/--------------------------------------------/"
-    echo "/----Enter one of the following commands-----/"
-    echo "/--------------------------------------------/"
-    echo "/------------- [some_string] ----------------/"
-    echo "/--------------------------------------------/"
-    echo "/---- Where [some_string] is a string to ----/"
-    echo "/----------- calculate her length -----------/"
-    echo "/--------------------------------------------/"
-    echo "/********** INTERACTIVE-STR_LEN *************/"
+    echo -e "\e[1;31m/********** INTERACTIVE-STR_LEN *************/\e[0m"
+    echo -e "\e[1;31m/--------------------------------------------/\e[0m"
+    echo -e "\e[33m/----Enter one of the following commands-----/\e[0m"
+    echo -e "\e[33m/--------------------------------------------/\e[0m"
+    echo -e "\e[1;33m/------------- [some_string] ----------------/\e[0m"
+    echo -e "\e[1;33m/--------------------------------------------/\e[0m"
+    echo -e "\e[32m/---- Where [some_string] is a string to ----/\e[0m"
+    echo -e "\e[32m/----------- calculate her length -----------/\e[0m"
+    echo -e "\e[34m/--------------------------------------------/\e[0m"
+    echo -e "\e[35m/********** INTERACTIVE-STR_LEN *************/\e[0m"
     echo -en "\nEnter one of the gave command to execute module: "
 } 
