@@ -3,7 +3,7 @@ function _privateIsCorrectExitCode
     if [[ $1 -lt -255 || $1 -gt 255 ]]
     then
         echo "Error: exit code should be in range from -255 to 255" >> /dev/stderr
-        help_
+        generalHelp
         exit -10
     fi
 }
@@ -14,7 +14,7 @@ function _privateArgExistExit
     if [[ $# -lt 0 || $# -gt 1 ]]
     then
         echo "Error: exit module contains 1 or 0 arguments. Not $#." >> /dev/stderr
-        help_
+        generalHelp
         exit -2
     elif [[ $# -eq 1 ]]
     then

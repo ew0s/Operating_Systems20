@@ -4,7 +4,7 @@ function _privateLogFilesExist
 {
     if ! [[ -e /var/log/anaconda/X.log ]]
     then
-        echo "Error: unable to locate /var/log/anaconda/X.log" && help_
+        echo "Error: unable to locate /var/log/anaconda/X.log" && generalHelp
         if ! [[ InInteractive -eq 0 ]]; then exit -9; else return 1; fi
     fi
 }

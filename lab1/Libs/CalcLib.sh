@@ -6,7 +6,7 @@ function _privateArgsExistCalc
     if ! [[ ArgsCount -eq 3 ]]
     then
         echo "Error: calc module contains 3 arguments. Not $ArgsCount." >> /dev/stderr
-        help_
+        generalHelp
         if ! [[ InInteractive -eq 0 ]]; then exit -2; else return 1; fi
     fi
     return 0
@@ -25,21 +25,21 @@ function _priavateArgsCorrectCalc
     if ! [[ $switchParameter =~ ^(sum|sub|mul|div)$ ]]
     then
         echo "Error: switchParameter should be like sum/sub/mul/div. Not $switchParameter." >> /dev/stderr
-        help_
+        generalHelp
         if ! [[ InInteractive -eq 0 ]]; then exit -12; else return 1; fi
     fi
 
     if ! [[ $lParameter =~ ^[-+]?[[:digit:]]+$ && ! $lParameter =~ ^-0$ ]]
     then 
         echo "Error: lParameter in $switchParameter should be integer. Not $lParameter." >> /dev/stderr
-        help_
+        generalHelp
         if ! [[ InInteractive -eq 0 ]]; then exit -15; else return 1; fi
     fi
 
     if ! [[ $rParameter =~ ^[-+]?[[:digit:]]+$ && ! $rParameter =~ ^-0$ ]]
     then
         echo "Error: rParameter in $switchParameter should be integer. Not $rParameter." >> /dev/stderr
-        help_
+        generalHelp
         if ! [[ InInteractive -eq 0 ]]; then exit -15; else return 1; fi
     fi
 }
@@ -51,7 +51,7 @@ function _privateDivision
     if [[ $rParameter -eq 0 ]]
     then
         echo "Error: division by 0 caught. Please try again"
-        help_
+        generalHelp
         if ! [[ InInteractive -eq 0 ]]; then exit -1; else return; fi
     fi
     echo $(( $lParameter / $rParameter ))

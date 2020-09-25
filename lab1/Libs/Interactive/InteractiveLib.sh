@@ -27,8 +27,17 @@ function _privateArgExistInteractive
     return 0
 }
 
+function _privateHelpExecute
+{
+    clear
+    generalHelp
+    _privateWaitUntilKey
+    clear
+}
+
 function _privateLogExecute
 {
+    clear
     log
     _privateWaitUntilKey
     clear
@@ -37,6 +46,7 @@ function _privateLogExecute
 
 function _privateModuleExecute
 {
+    clear
     _privateShow$1Menu
     read
     $( echo $1 | awk '{print tolower($0)}') $REPLY
@@ -57,6 +67,8 @@ function _privateChooseTODO
             _privateModuleExecute StrLen;;
         "5")
             _privateLogExecute;;
+        "6")
+            _privateHelpExecute;;
         "7")
             exi;;
     esac

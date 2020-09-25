@@ -11,7 +11,6 @@ function ImportScriptsExist
     if [[ -f $fileName ]]; then . $fileName;
     else
         echo "Fatal error: unable to find $fileName" > /dev/stderr
-        generalHelp
         exit -9
     fi
 }
