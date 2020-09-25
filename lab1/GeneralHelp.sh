@@ -44,7 +44,7 @@ function generalHelp
     echo -e "\e[1m\t-1  ----- Division by zero caught."
     echo -e "\e[1m\t-2  ----- Args count error. Make sure you are giving correct count of arguments
                                     when run some module."
-    echo -e "\e[1m\t-5  ----- First argument not exist. Male sure you are giving at least one argument
+    echo -e "\e[1m\t-5  ----- First argument not exist. Make sure you are giving at least one argument
                                     when start application"
     echo -e "\e[1m\t-6  ----- First argument in application should be like
                                     calc/search/reverse/strlen/log/interactive/help/exit.

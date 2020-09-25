@@ -13,6 +13,8 @@ function strlen
 {
     if _privateArgsExistStrLen $#
     then
-        echo $1 | awk '{print length}'
+        str="$@"
+        echo ${#str}
+        #echo $1 | awk '{print length}'
     fi
 }
