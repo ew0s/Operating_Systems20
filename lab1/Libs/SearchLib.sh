@@ -5,7 +5,6 @@ function _privateArgsExistSearch
     if ! [[ $1 -eq 2 ]]
     then
         echo "Error: module search contains 2 arguments. Not $1" >> /dev/stderr
-        generalHelp
         if ! [[ InInteractive -eq 0 ]]; then exit -2; else return 1; fi
     fi
 
@@ -17,8 +16,7 @@ function _privateIsDirectory
     if ! [[ -d $1 ]]
     then
         echo "Error: first argument in search module must be a directory." >> /dev/stderr
-        generalHelp
-        if ! [[ InInteractive -eq 0 ]]; then exit -6; else return 1; fi 
+        if ! [[ InInteractive -eq 0 ]]; then exit -7; else return 1; fi 
     fi
 
     return 0
@@ -29,8 +27,7 @@ function _privatePremissionCheck
     if ! [[ -r $1 ]]
     then
         echo "Error: premission denied for $1." >> /dev/stderr
-        generalHelp
-        if ! [[ InInteractive -eq 0 ]]; then exit -2; else return 1; fi
+        if ! [[ InInteractive -eq 0 ]]; then exit -8; else return 1; fi
     fi
 
     return 0

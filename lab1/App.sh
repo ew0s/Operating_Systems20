@@ -1,16 +1,12 @@
 #!/bin/bash
 
-function help_
+function ImportantScriptsExist
 {
-    echo "There sholud be some help info."
-}
-
-function ImportScriptsExist
-{
-    local fileName="ImportFiles.sh"
-    if [[ -f $fileName ]]; then . $fileName;
+    local fileName1="ImportFiles.sh"
+    local fileName2="GeneralHelp.sh"
+    if [[ -f $fileName1 && -f $fileName2 ]]; then . $fileName1 && . $fileName2;
     else
-        echo "Fatal error: unable to find $fileName" > /dev/stderr
+        echo "Fatal error: unable to find $fileName1 or $fileName2" > /dev/stderr
         exit -9
     fi
 }
@@ -32,8 +28,10 @@ function FirstArgExist()
     fi
 }
 
-ImportScriptsExist
+foundWarning=1
+ImportantScriptsExist
 ImportScripts
+if [[ foundWarning -eq 0 ]]; then echo "PRESS ENTER TO CONTINUE" && read; fi
 FirstArgExist $1
 InInteractive=1
 
@@ -59,7 +57,7 @@ case $1 in
     "interactive")
         if require Libs/Interactive/InteractiveLib.sh; then interactive; fi;;
     "help")
-        help_;;
+        generalHelp;;
     "exit")
         if require Libs/ExitLib.sh; then exi "$@"; fi;;
 esac

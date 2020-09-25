@@ -29,29 +29,44 @@ function _privateArgExistInteractive
 
 function _privateHelpExecute
 {
-    clear
-    generalHelp
+    if require GeneralHelp.sh
+    then
+        clear
+        generalHelp
+        _privateWaitUntilKey
+        clear
+        return
+    fi
     _privateWaitUntilKey
-    clear
 }
 
 function _privateLogExecute
 {
-    clear
-    log
+    if require Libs/LogLib.sh
+    then   
+        clear
+        log
+        _privateWaitUntilKey
+        clear
+        return
+    fi
     _privateWaitUntilKey
-    clear
 }
 
 
 function _privateModuleExecute
 {
-    clear
-    _privateShow$1Menu
-    read
-    $( echo $1 | awk '{print tolower($0)}') $REPLY
+    if require Libs/$1Lib.sh
+    then
+        clear
+        _privateShow$1Menu
+        read
+        $( echo $1 | awk '{print tolower($0)}') $REPLY
+        _privateWaitUntilKey
+        clear
+        return
+    fi
     _privateWaitUntilKey
-    clear
 }
 
 function _privateChooseTODO
@@ -86,6 +101,8 @@ function _privateReadUserData
 
 function interactive
 {
+    _privateImport Libs/Interactive/DisplayInfo.sh
+    if ! require Libs/Interactive/DisplayInfo.sh; then exit -12; fi
     clear
     InInteractive=0
     while [[ 1 -eq 1 ]]
@@ -93,5 +110,4 @@ function interactive
         _privateShowMenu
         _privateReadUserData
     done
-    InInteractive=1
 }
