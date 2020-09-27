@@ -54,5 +54,5 @@ exit exit_code_if_exist
 ```
 ---
 #### Help  page 
-![help_img ](/imgs/help_img1.png)
+![help_img ](imgs/help_img1.png)
 ![help_img](imgs/help_img2.png)
