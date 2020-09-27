@@ -45,7 +45,7 @@ strlen some_string
     Just type log to see warnings and info ;)
 #### interactive
     Just type interactive to see beauty menu and execute modules;)
-<img src="imgs/interactive_menu.png" width="400">
+![interactive_img](imgs/interactive_menu.png)
 #### help
     Just type help to see help page wich looks like man page
 #### exit
