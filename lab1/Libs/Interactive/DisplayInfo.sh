@@ -76,4 +76,9 @@ function _privateShowStrLenMenu
     echo -e "\e[34m/--------------------------------------------/\e[0m"
     echo -e "\e[35m/********** INTERACTIVE-STR_LEN *************/\e[0m"
     echo -en "\nEnter one of the gave command to execute module: "
-} 
+}
+
+function _privateShowExitMenu
+{
+    echo -en "\e[1;36mEnter exit code if exist and press ENTER: "
+}

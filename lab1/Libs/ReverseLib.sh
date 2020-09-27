@@ -21,10 +21,15 @@ function _privateIsCorrectFiles
         if ! [[ InInteractive -eq 0 ]]; then exit -8; else return 1; fi
     fi
 
-    if ! [[ -w $fileToWrite ]]
+    if [[ -e $fileToWrite  ]]
     then
-        echo "Error: permission denied for $fileToWrite. Make sure you giving writeable file." >> /dev/stderr
-        if ! [[ InInteractive -eq 0 ]]; then exit -8; else return 1; fi
+        if ! [[ -w $fileToWrite ]]
+        then
+            echo "Error: permission denied for $fileToWrite. Make sure you giving writeable file." >> /dev/stderr
+            if ! [[ InInteractive -eq 0 ]]; then exit -8; else return 1; fi
+        fi
+    else
+        touch $fileToWrite
     fi
 
     return 0

@@ -27,13 +27,13 @@ function _priavateArgsCorrectCalc
         if ! [[ InInteractive -eq 0 ]]; then exit -12; else return 1; fi
     fi
 
-    if ! [[ $lParameter =~ ^[-+]?[[:digit:]]+$ && ! $lParameter =~ ^[+-]0$ ]]
+    if ! [[ $lParameter =~ ^[-+]?[[:digit:]]+$ ]]
     then 
         echo "Error: lParameter in $switchParameter should be integer. Not $lParameter." >> /dev/stderr
         if ! [[ InInteractive -eq 0 ]]; then exit -15; else return 1; fi
     fi
 
-    if ! [[ $rParameter =~ ^[-+]?[[:digit:]]+$ && ! $rParameter =~ ^[+-]0$ ]]
+    if ! [[ $rParameter =~ ^[-+]?[[:digit:]]+$ ]]
     then
         echo "Error: rParameter in $switchParameter should be integer. Not $rParameter." >> /dev/stderr
         if ! [[ InInteractive -eq 0 ]]; then exit -15; else return 1; fi

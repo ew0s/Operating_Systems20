@@ -51,7 +51,7 @@ case $1 in
         if require Libs/ReverseLib.sh; then reverse $2 $3; fi;;
     "strlen")
         # $1 - the string that was given from the terminal
-        if require Libs/StrLenLib.sh; then strlen $2; fi;;
+        if require Libs/StrLenLib.sh; then strlen "$2"; fi;;
     "log")
         if require Libs/LogLib.sh; then log; fi;;
     "interactive")

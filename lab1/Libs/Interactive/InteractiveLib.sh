@@ -53,6 +53,36 @@ function _privateLogExecute
     _privateWaitUntilKey
 }
 
+function _privateStrLenExecute
+{
+    if require Libs/StrLenLib.sh
+    then
+        clear
+        _privateShowStrLenMenu
+        read
+        strlen "$REPLY"
+        _privateWaitUntilKey
+        clear
+        return
+    fi
+    _privateWaitUntilKey
+}
+
+function _privateExitExecute
+{
+    if require Libs/ExitLib.sh
+    then
+        clear
+        _privateShowExitMenu
+        read
+        exi "exit" $REPLY
+        _privateWaitUntilKey
+        clear
+        return
+    fi
+    _privateWaitUntilKey
+}
+
 
 function _privateModuleExecute
 {
@@ -79,13 +109,13 @@ function _privateChooseTODO
         "3")
             _privateModuleExecute Reverse;;
         "4")
-            _privateModuleExecute StrLen;;
+            _privateStrLenExecute;;
         "5")
             _privateLogExecute;;
         "6")
             _privateHelpExecute;;
         "7")
-            exi;;
+            _privateExitExecute;;
     esac
 }
 
