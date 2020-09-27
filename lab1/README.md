@@ -1,6 +1,6 @@
 # [Laboratory work №1. Basics of shell scripts.](https://docs.google.com/document/d/16tm81Myzdr27izaz868YtuAKi9R75oVHFoZpp4J3LzI/edit)
 ---
-![img](https://s3.tproger.ru/uploads/2017/01/bash-cheatsheet.png)
+![img](https://static.tildacdn.com/tild3337-6636-4766-b635-623563373732/basg.png)
 ## Using App
 ---
 #### Once you've cloned my repository type:
