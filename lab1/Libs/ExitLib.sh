@@ -6,7 +6,7 @@ function _privateIsCorrectExitCode
         if ! [[ $InInteractive -eq 0 ]]; then exit -10; else return 1; fi
     fi
 
-    if ! [[ $1 =~ ^[0-9]+$ ]]
+    if ! [[ $1 =~ ^-?[0-9]+$ ]]
     then
         echo "Error: exit code should be an INT. Not $1" >> /dev/stderr
         if ! [[ $InInteractive -eq 0 ]]; then exit -10; else return 1; fi
