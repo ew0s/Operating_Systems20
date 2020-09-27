@@ -45,7 +45,7 @@ strlen some_string
     Just type log to see warnings and info ;)
 #### interactive
     Just type interactive to see beauty menu and execute modules;)
-![interactive_img](imgs/interactive_menu.png)
+![interactive_img](imgs/../../imgs/interactive_menu.png)
 #### help
     Just type help to see help page wich looks like man page
 #### exit
@@ -54,5 +54,5 @@ exit exit_code_if_exist
 ```
 ---
 #### Help  page 
-![help_img ](imgs/help_img1.png)
-![help_img](imgs/help_img2.png)
+![help_img ](imgs/../../imgs/help_img1.png)
+![help_img](imgs/../../imgs/help_img2.png)
