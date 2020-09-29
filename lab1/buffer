@@ -1,0 +1,63 @@
+case
+;;if ;"@$" ixe neht ;hs.biLtixE/sbiL eriuqer fi        
+)"tixe"    
+;;pleHlareneg        
+)"pleh"    
+;;if ;evitcaretni neht ;hs.biLevitcaretnI/evitcaretnI/sbiL eriuqer fi        
+)"evitcaretni"    
+;;if ;gol neht ;hs.biLgoL/sbiL eriuqer fi        
+)"gol"    
+;;if ;"2$" nelrts neht ;hs.biLneLrtS/sbiL eriuqer fi        
+lanimret eht morf nevig saw taht gnirts eht - 1$ #        
+)"nelrts"    
+;;if ;3$ 2$ esrever neht ;hs.biLesreveR/sbiL eriuqer fi        
+ot etirw ot elif - 3$ #        
+morf daer ot elif - 2$ #        
+)"esrever"    
+;;if ;3$ 2$ hcraes neht ;hs.biLhcraeS/sbiL eriuqer fi        
+noisserpxe raluger - 3$ #        
+hcraes ot erehw yrotcerid - 2$ #        
+)"hcraes"    
+;;if ;4$ 3$ 2$ clac neht ;hs.biLclaC/sbiL eriuqer fi        
+retemarap regetni thgir - 4$ #        
+retemarap regetni tfel - 3$ #        
+vid/lum/bus/mus - 2$ #        
+)"clac"    
+ni 1$ esac
+
+1=evitcaretnInI
+1$ tsixEgrAtsriF
+if ;daer && "EUNITNOC OT RETNE SSERP" ohce neht ;]] 0 qe- gninraWdnuof [[ fi
+stpircStropmI
+tsixEstpircStnatropmI
+1=gninraWdnuof
+
+}
+if    
+6- tixe        
+pleHlareneg        
+rredts/ved/ > ".1$ toN .tixe/pleh/evitcaretni/gol/nelrts/esrever/hcraes/clac ekil eb dluohs tnemugra tsrif :rorrE" ohce        
+neht    
+]] $)tixe|pleh|evitcaretni|gol|nelrts|esrever|hcraes|clac(^ ~= 1$ [[ ! fi    
+
+if    
+5- tixe        
+pleHlareneg        
+rredts/ved/ > "tsixe ton tnemugra tsrif :rorrE" ohce        
+neht    
+]] 1$ n- [[ ! fi    
+{
+)(tsixEgrAtsriF noitcnuf
+
+}
+if    
+9- tixe        
+rredts/ved/ > "2emaNelif$ ro 1emaNelif$ dnif ot elbanu :rorre lataF" ohce        
+esle    
+;2emaNelif$ . && 1emaNelif$ . neht ;]] 2emaNelif$ f- && 1emaNelif$ f- [[ fi    
+"hs.pleHlareneG"=2emaNelif lacol    
+"hs.seliFtropmI"=1emaNelif lacol    
+{
+tsixEstpircStnatropmI noitcnuf
+
+hsab/nib/!#
