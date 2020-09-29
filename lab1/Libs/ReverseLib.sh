@@ -43,9 +43,11 @@ function _privateIsCorrectFiles
 
 function _privateReadAndWrite
 {
-    exec 3>buffer
+    tmpfile=$(mktemp /tmp/AppBuffer)
+    exec 3>"$tmpfile"
     cat $1 >&3
-    tac buffer | rev 1> $2 2> /dev/stderr
+    tac "$tmpfile" | rev 1> $2 2> /dev/null
+    rm "$tmpfile"
     exec 3>&-
 }
 
@@ -54,5 +56,4 @@ function reverse
     if ! _privateArgsExistReverse $#; then return; fi
     if ! _privateIsCorrectFiles $1 $2; then return; fi
     _privateReadAndWrite $1 $2
-    rm buffer
 }
