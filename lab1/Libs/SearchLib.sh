@@ -35,11 +35,10 @@ function _privatePremissionCheck
 
 function _privateGrepSearch
 {
-    grep -r "$2" $1 2> /dev/stderr 1>&1
+    grep -r "$2" "$1" 2> /dev/null
     local grepCode=$?
-    if [[ $grepCode -eq 0 ]]
-    then
-        return
+
+    if [[ $grepCode -eq 0 ]]; then return;
     elif [[ $grepCode -eq 1 ]]
     then
         echo -e "NO MATCHES FOUND FOR \"$2\"" >> /dev/stderr
