@@ -15,6 +15,12 @@ function _privateIsCorrectFiles
 {
     local fileToRead=$1
     local fileToWrite=$2
+    if ! [[ -e $fileToRead ]]
+    then
+        echo "Error: $fileToRead do not exist." >> /dev/stderr
+        if ! [[ InInteractive -eq 0 ]]; then exit -8; else return 1; fi
+    fi
+
     if ! [[ -r $fileToRead ]]
     then
         echo "Error: permission denied for $fileToRead. Make sure you giving readable file." >> /dev/stderr
@@ -25,7 +31,7 @@ function _privateIsCorrectFiles
     then
         if ! [[ -w $fileToWrite ]]
         then
-            echo "Error: permission denied for $fileToWrite. Make sure you giving writeable file." >> /dev/stderr
+            echo "Error: permission denied for $fileToWrite. Make sure file is writeable." >> /dev/stderr
             if ! [[ InInteractive -eq 0 ]]; then exit -8; else return 1; fi
         fi
     else
@@ -48,4 +54,5 @@ function reverse
     if ! _privateArgsExistReverse $#; then return; fi
     if ! _privateIsCorrectFiles $1 $2; then return; fi
     _privateReadAndWrite $1 $2
+    rm buffer
 }
