@@ -1,8 +1,8 @@
 function _privateArgsExistStrLen
 {
-    if ! [[ $1 -eq 1 ]] 
+    if ! [[ $# -eq 1 ]] 
     then
-        echo "Error: strlen module contains 1 argument. Not $1." >> /dev/stderr
+        echo "Error: strlen module contains 1 argument. Not $#." >> /dev/stderr
         if ! [[ InInteractive -eq 0 ]]; then exit -2; else return 1; fi
     fi
 
@@ -11,7 +11,8 @@ function _privateArgsExistStrLen
 
 function strlen
 {
-    if _privateArgsExistStrLen $#
+    shift
+    if _privateArgsExistStrLen "$@"
     then
         echo ${#1} 
     fi
