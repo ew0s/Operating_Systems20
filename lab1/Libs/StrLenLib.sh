@@ -11,7 +11,6 @@ function _privateArgsExistStrLen
 
 function strlen
 {
-    shift
     if _privateArgsExistStrLen "$@"
     then
         echo ${#1} 
