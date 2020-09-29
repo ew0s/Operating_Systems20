@@ -43,7 +43,7 @@ function _privateIsCorrectFiles
 
 function _privateReadAndWrite
 {
-    tmpfile=$(mktemp /tmp/AppBuffer)
+    tmpfile=$(mktemp /tmp/AppBuffer.XXXXXX)
     exec 3>"$tmpfile"
     cat $1 >&3
     tac "$tmpfile" | rev 1> $2 2> /dev/null
