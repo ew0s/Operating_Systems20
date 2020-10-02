@@ -15,27 +15,32 @@ function _privateIsCorrectFiles
 {
     local fileToRead=$1
     local fileToWrite=$2
-    if ! [[ -e $fileToRead ]]
+    if ! [[ -e "$fileToRead" ]]
     then
         echo "Error: $fileToRead do not exist." >> /dev/stderr
         if ! [[ InInteractive -eq 0 ]]; then exit -8; else return 1; fi
     fi
 
-    if ! [[ -r $fileToRead ]]
+    if ! [[ -r "$fileToRead" ]]
     then
         echo "Error: permission denied for $fileToRead. Make sure you giving readable file." >> /dev/stderr
         if ! [[ InInteractive -eq 0 ]]; then exit -8; else return 1; fi
     fi
 
-    if [[ -e $fileToWrite  ]]
+    if [[ -e "$fileToWrite"  ]]
     then
-        if ! [[ -w $fileToWrite ]]
+        if ! [[ -w "$fileToWrite" ]]
         then
             echo "Error: permission denied for $fileToWrite. Make sure file is writeable." >> /dev/stderr
             if ! [[ InInteractive -eq 0 ]]; then exit -8; else return 1; fi
         fi
     else
-        touch $fileToWrite
+        touch $fileToWrite &> /dev/null
+        if ! [[ -e $fileToWrite ]]
+        then 
+            echo "Error: permission denied for $fileToWrite. Make sure file is writeable." >> /dev/stderr
+            if ! [[ InInteractive -eq 0 ]]; then exit -8; else return 1; fi
+        fi
     fi
 
     return 0
