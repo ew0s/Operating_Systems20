@@ -27,6 +27,12 @@ function _privateIsCorrectFiles
         if ! [[ InInteractive -eq 0 ]]; then exit -8; else return 1; fi
     fi
 
+    if [[ -d $fileToRead ]]
+    then
+        echo "Error: $fileToRead is a directory." >> /dev/stderr
+        if ! [[ InInteractive -eq 0 ]]; then exit -8; else return 1; fi
+    fi
+
     if [[ -e "$fileToWrite"  ]]
     then
         if ! [[ -w "$fileToWrite" ]]

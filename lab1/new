@@ -1,64 +1,79 @@
-#!/bin/bash
-
-function ImportantScriptsExist
-{
-    local fileName1="ImportFiles.sh"
-    local fileName2="GeneralHelp.sh"
-    if [[ -f $fileName1 && -f $fileName2 ]]; then . $fileName1 && . $fileName2;
-    else
-        echo "Fatal error: unable to find $fileName1 or $fileName2" > /dev/stderr
-        exit -9
-    fi
 }
-
-function FirstArgExist()
+if ;3$ 2$ 1$ claCoTesoohCetavirp_ neht ;@$ ydaeReluduoMclaC fi    
 {
-    if ! [[ -n $1 ]]
-    then
-        echo "Error: first argument not exist" > /dev/stderr
-        generalHelp
-        exit -5
-    fi
+clac noitcnuf
 
-    if ! [[ $1 =~ ^(calc|search|reverse|strlen|log|interactive|help|exit)$ ]]
-    then
-        echo "Error: first argument should be like calc/search/reverse/strlen/log/interactive/help/exit. Not $1." > /dev/stderr
-        generalHelp
-        exit -6
-    fi
 }
+0 nruter  
+if ;1 nruter neht ;3$ 2$ 1$ claCtcerroCsgrAetavairp_ ! fi  
+if ;1 nruter neht ;#$ claCtsixEsgrAetavirp_ ! fi  
+{
+ydaeReluduoMclaC noitcnuf
 
-foundWarning=1
-ImportantScriptsExist
-ImportScripts
-if [[ foundWarning -eq 0 ]]; then echo "PRESS ENTER TO CONTINUE" && read; fi
-FirstArgExist $1
-InInteractive=1
+}
+case    
+;;3$ 2$ noisiviDetavirp_            
+)"vid"        
+;;)) 3$ * 2$ (($ ohce            
+)"lum"        
+;;)) 3$ - 2$ (($ ohce            
+)"bus"        
+;;)) 3$ + 2$ (($ ohce            
+)"mus"        
+ni "1$" esac    
+{
+claCoTesoohCetavirp_ noitcnuf
 
-case $1 in
-    "calc")
-        # $2 - sum/sub/mul/div
-        # $3 - left integer parameter
-        # $4 - right integer parameter
-        if require Libs/CalcLib.sh; then calc $2 $3 $4; fi;;
-    "search")
-        # $2 - directory where to search
-        # $3 - regular expression
-        if require Libs/SearchLib.sh; then search $2 $3; fi;;
-    "reverse")
-        # $2 - file to read from
-        # $3 - file to write to
-        if require Libs/ReverseLib.sh; then reverse $2 $3; fi;;
-    "strlen")
-        # $1 - the string that was given from the terminal
-        shift
-        if require Libs/StrLenLib.sh; then strlen "$@"; fi;;
-    "log")
-        if require Libs/LogLib.sh; then log; fi;;
-    "interactive")
-        if require Libs/Interactive/InteractiveLib.sh; then interactive; fi;;
-    "help")
-        generalHelp;;
-    "exit")
-        if require Libs/ExitLib.sh; then exi "$@"; fi;;
-esac
+}
+)) retemaraPr$ / retemaraPl$ (($ ohce    
+if    
+if ;nruter esle ;1- tixe neht ;]] 0 qe- evitcaretnInI [[ ! fi        
+"niaga yrt esaelP .thguac 0 yb noisivid :rorrE" ohce        
+neht    
+]] 0 qe- retemaraPr$ [[ fi    
+2$=retemaraPr lacol    
+1$=retemaraPl lacol    
+{
+noisiviDetavirp_ noitcnuf
+
+}
+if    
+if ;1 nruter esle ;51- tixe neht ;]] 0 qe- evitcaretnInI [[ ! fi        
+rredts/ved/ >> ".retemaraPr$ toN .regetni eb dluohs retemaraPhctiws$ ni retemaraPr :rorrE" ohce        
+neht    
+]] $+]]:tigid:[[?]+-[^ ~= retemaraPr$ [[ ! fi    
+
+if    
+if ;1 nruter esle ;51- tixe neht ;]] 0 qe- evitcaretnInI [[ ! fi        
+rredts/ved/ >> ".retemaraPl$ toN .regetni eb dluohs retemaraPhctiws$ ni retemaraPl :rorrE" ohce        
+ neht    
+]] $+]]:tigid:[[?]+-[^ ~= retemaraPl$ [[ ! fi    
+
+if    
+if ;1 nruter esle ;21- tixe neht ;]] 0 qe- evitcaretnInI [[ ! fi        
+rredts/ved/ >> ".retemaraPhctiws$ toN .vid/lum/bus/mus ekil eb dluohs retemaraPhctiws :rorrE" ohce        
+neht    
+]] $)vid|lum|bus|mus(^ ~= retemaraPhctiws$ [[ ! fi    
+
+3$=retemaraPr lacol    
+2$=retemaraPl lacol    
+1$=retemaraPhctiws lacol    
+
+regetnIr - 3$ #    
+regetnIl - 2$ #    
+vid/lum/bus/mus - 1$ #    
+{
+claCtcerroCsgrAetavairp_ noitcnuf
+
+}
+0 nruter    
+if    
+if ;1 nruter esle ;2- tixe neht ;]] 0 qe- evitcaretnInI [[ ! fi        
+rredts/ved/ >> ".tnuoCsgrA$ toN .stnemugra 3 sniatnoc eludom clac :rorrE" ohce        
+neht    
+]] 3 qe- tnuoCsgrA [[ ! fi    
+1$=tnuoCsgrA lacol    
+{
+claCtsixEsgrAetavirp_ noitcnuf
+
+hsab/nib/!#
