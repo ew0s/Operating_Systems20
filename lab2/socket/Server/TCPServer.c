@@ -17,12 +17,13 @@ int main()
     // define the server address
     struct sockaddr_in server_address;
     server_address.sin_family = AF_INET;
-    server_address.sin_port = htons(9302);
+    server_address.sin_port = htons(9002);
     server_address.sin_addr.s_addr = INADDR_ANY;
 
     // find the socket to our specified PI and port
-    bind(server_socket, (struct sockaddr*) &server_socket, sizeof(server_address));
-
+    bind(server_socket, (struct sockaddr*) &server_address, sizeof(server_address));
+    
+    printf("sdjfalskjd");
     listen(server_socket, 5);
 
     int client_socket;
