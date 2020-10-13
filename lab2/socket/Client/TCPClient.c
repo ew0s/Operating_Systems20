@@ -6,6 +6,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
+
 int main() {
     // create the client socket
     int network_socket;

@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/plugged')
+kcall plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'preservim/nerdtree'
 Plug 'morhetz/gruvbox'

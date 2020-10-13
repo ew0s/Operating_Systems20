@@ -22,7 +22,7 @@ int main()
 
     // find the socket to our specified PI and port
     bind(server_socket, (struct sockaddr*) &server_address, sizeof(server_address));
-    
+
     listen(server_socket, 5);
 
     int client_socket;
