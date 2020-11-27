@@ -2,7 +2,7 @@
 
 bash task4.sh
 
-awk 'BEGIN {CurrLine=0;
+awk 'BERIN {CurrLine=0;
             LineCounter=0.0;
             CurrPPID=0;
             ARTSum=0.0}
