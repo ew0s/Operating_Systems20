@@ -13,7 +13,7 @@ do
         {
             printf "Parent_ProcessID=%d : ", $2
         }
-    }' /proc/$i/status > buffer ) 2> /dev/null
+    }' /proc/$i/status >> buffer ) 2> /dev/null
 
     (awk '{
         if ($1 == "se.sum_exec_runtime")

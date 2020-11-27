@@ -2,7 +2,7 @@
 
 bash task4.sh
 
-awk 'BERIN {currentLine=0; lineCounter=0.0; currentParentId=0; ARTSum=0.0}
+awk 'BEGIN {currentLine=0; lineCounter=0.0; currentParentId=0; ARTSum=0.0}
 {
 if (currentLine == 0)
 {
