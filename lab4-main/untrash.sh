@@ -12,11 +12,15 @@ then
     exit 1
 fi
 
-TrashLogPath=$~/trash.log
-TrashPath=$~/trash
+TrashLogPath=$"~/.trash.log"
+TrashPath=$"~/.trash"
 
-[ -f $TrashLogPath ] || { echo "[ERROR]: Hidden file trash.log does not exist"}; exit 1; };
-[ -s $TrashLogPath ] || { echo "[ERROR]: Hidden file trash.log is empty"; exit 1; };
+if [[ -e "$TrashLogPath" ]]; then
+    echo "[ERROR]: Hidden file .trash.log does not exist"; 
+    exit 1;
+fi
+
+[ -s $TrashLogPath ] || { echo "[ERROR]: Hidden file .trash.log is empty"; exit 1; };
 
 [ -d $TrashPath ] || { echo "[ERROR]: Hidden directory trash does not exist"; exit 1; };
 
@@ -31,7 +35,31 @@ function Recover()
     local FileName=$3
     local TrashPath=$4
     local TrashLogPath=$5
+    local CurrentDirectoryPath=$(echo "$1" | awk 'BEGIN{FS = OFS = "/"} {$NF=""; print}')
 
+    if [[ -e "CurrentDirectoryPath" ]]
+    then
+        if [[ ! -f "$FilePath" ]]
+        then
+            ln "$TrashPath/$LinkName" "$FilePath"
+        else
+            echo "[WARNING]: File already exists in given directory. Change file name."
+            read name < /dev/tty
+            ln "$TrashPath/$LinkName" "$CurrentDirectoryPath/$name"
+        fi
+        echo "[SUCCESS]: File recovered successfully"
+    else
+        if [[ ! -f "~/$FileName" ]] then;
+            ln "$TrashPath/$LinkName" "~/$FileName"
+        else
+            echo "[WARNING]: File already exists in given directory. Change file name."
+            read name < /dev/tty
+            ln "$TrashPath/$LinkName" "~/$name"
+        fi
+        echo "[SUCCESS]: File recovered successfully and moved to home directory"
+    fi
+    rm "$TrashPath/$LinkName"
+    sed -i "/$LinkName/d" "$TrashLogPath"
 }
 
 Matches=$(mktemp /tmp/untrash_script.XXXXXX)
