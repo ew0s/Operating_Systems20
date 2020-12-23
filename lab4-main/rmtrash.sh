@@ -23,6 +23,6 @@ mkdir ~/.trash 2> /dev/null
 date=$(date +'%F_%H-%M-%S');
 ln $1 ~/.trash/$date
 
-echo "deleted path: $PWD/$1, created hard link $date" >> ~/.trash.log
+echo "$PWD/$1 $date" >> ~/.trash.log
 
 rm $1

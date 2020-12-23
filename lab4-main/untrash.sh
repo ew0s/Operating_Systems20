@@ -26,6 +26,11 @@ FileCount=$(echo $( ls -A $TrashPath | wc -l ))
 
 function Recover()
 {
+    local FilePath=$1
+    local LinkName=$2
+    local FileName=$3
+    local TrashPath=$4
+    local TrashLogPath=$5
 
 }
 
