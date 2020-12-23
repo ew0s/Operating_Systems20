@@ -12,20 +12,26 @@ then
     exit 1
 fi
 
-TrashLogPath=$"~/.trash.log"
-TrashPath=$"~/.trash"
+TrashLogPath=~/.trash.log
+TrashPath=~/.trash
 
-if [[ -e "$TrashLogPath" ]]; then
+if [[ -e TrashLogPath ]]; then
     echo "[ERROR]: Hidden file .trash.log does not exist"; 
     exit 1;
 fi
 
-[ -s $TrashLogPath ] || { echo "[ERROR]: Hidden file .trash.log is empty"; exit 1; };
+if [[ -s TrashLogPath ]]; then
+    echo "[ERROR]: Hidden file .trash.log is empty";
+    exit 1;
+fi
 
-[ -d $TrashPath ] || { echo "[ERROR]: Hidden directory trash does not exist"; exit 1; };
+if [[ -d TrashPath ]]; then
+    echo "[ERROR]: Hidden directory trash does not exist";
+    exit 1;
+fi
 
 FileCount=$(echo $( ls -A $TrashPath | wc -l ))
-[ FileCount -e 0 ] && { echo "[ERROR]: Hidden directory is empty"; exit 1; };
+[ $FileCount -eq 0 ] && { echo "[ERROR]: Hidden directory is empty"; exit 1; };
 
 
 function Recover()
@@ -37,7 +43,7 @@ function Recover()
     local TrashLogPath=$5
     local CurrentDirectoryPath=$(echo "$1" | awk 'BEGIN{FS = OFS = "/"} {$NF=""; print}')
 
-    if [[ -e "CurrentDirectoryPath" ]]
+    if [[ -e "$CurrentDirectoryPath" ]]
     then
         if [[ ! -f "$FilePath" ]]
         then
@@ -49,7 +55,7 @@ function Recover()
         fi
         echo "[SUCCESS]: File recovered successfully"
     else
-        if [[ ! -f "~/$FileName" ]] then;
+        if [[ ! -f "~/$FileName" ]]; then
             ln "$TrashPath/$LinkName" "~/$FileName"
         else
             echo "[WARNING]: File already exists in given directory. Change file name."
@@ -58,8 +64,9 @@ function Recover()
         fi
         echo "[SUCCESS]: File recovered successfully and moved to home directory"
     fi
+
     rm "$TrashPath/$LinkName"
-    sed -i "/$LinkName/d" "$TrashLogPath"
+    sed -i "/$LinkName/d" "$TrashLogPath" 2> /dev/null
 }
 
 Matches=$(mktemp /tmp/untrash_script.XXXXXX)
@@ -76,13 +83,16 @@ do
     FilePath=$(echo "$LINE" | awk '{print $1}')
     LinkName=$(echo "$LINE" | awk '{print $2}')
 
-    echo "Press ENTER to recover $FilePath from trash:"
-    echo "Press any other key to continue"
+    echo "Press ENTER to recover $FilePath from trash or any key to continue:"
     read input < /dev/tty
+    clear
     if [[ $input == "" ]]
     then
-        recover $FilePath $LinkName $1 $TrashPath $TrashLogPath
+        Recover $FilePath $LinkName $1 $TrashPath $TrashLogPath
     else
         continue
     fi
 done
+
+echo "" > $TrashLogPath
+rm Matches
