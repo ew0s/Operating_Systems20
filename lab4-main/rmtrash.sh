@@ -18,11 +18,11 @@ then
     exit 1
 fi
 
-mkdir ~/trash 2> /dev/null
+mkdir ~/.trash 2> /dev/null
 
 date=$(date +'%F_%H-%M-%S');
-ln $1 ~/trash/$date
+ln $1 ~/.trash/$date
 
-echo "deleted path: $PWD/$1, created hard link $date" >> ~/trash.log
+echo "deleted path: $PWD/$1, created hard link $date" >> ~/.trash.log
 
 rm $1
