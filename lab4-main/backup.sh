@@ -29,7 +29,7 @@ then
             then
                 SourceSize=$(wc -c ~/source/$file | awk '{print $1}')
                 LastSourceSize=$(wc -c $LastDirectory/$file | awk '{print $1}')
-                SizeDiff=$(echo $($SourceSize - $LastSourceSize) | bc)
+                SizeDiff=$(echo "$SourceSize - $LastSourceSize" | bc)
 
                 if [[ $SizeDiff -ne 0 ]]
                 then
