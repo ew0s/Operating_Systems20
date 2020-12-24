@@ -15,17 +15,17 @@ fi
 TrashLogPath=~/.trash.log
 TrashPath=~/.trash
 
-if [[ -e TrashLogPath ]]; then
+if [[ ! -e TrashLogPath ]]; then
     echo "[ERROR]: Hidden file .trash.log does not exist"; 
     exit 1;
 fi
 
-if [[ -s TrashLogPath ]]; then
+if [[ ! -s TrashLogPath ]]; then
     echo "[ERROR]: Hidden file .trash.log is empty";
     exit 1;
 fi
 
-if [[ -d TrashPath ]]; then
+if [[ ! -d TrashPath ]]; then
     echo "[ERROR]: Hidden directory trash does not exist";
     exit 1;
 fi
