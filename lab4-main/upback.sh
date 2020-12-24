@@ -17,7 +17,7 @@ else
 	mkdir ~/restore
 fi
 
-for file in $(ls $lastBackup | grep -Ev "\.[0-9]{4}-[0-9]{2}-[0-9]{2}$")
+for file in $(ls $LastBackup | grep -Ev "\.[0-9]{4}-[0-9]{2}-[0-9]{2}$")
 do
-	cp $lastBackup/$file ~/restore/$file
+	cp $LastBackup/$file ~/restore/$file
 done
