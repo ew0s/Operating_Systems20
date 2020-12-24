@@ -83,10 +83,10 @@ do
     FilePath=$(echo "$LINE" | awk '{print $1}')
     LinkName=$(echo "$LINE" | awk '{print $2}')
 
-    echo "Press ENTER to recover $FilePath from trash or any key to continue:"
+    echo "Press Y to recover $FilePath from trash or any key to continue:"
     read input < /dev/tty
     clear
-    if [[ $input == "" ]]
+    if [[ $input == "Y" ]]
     then
         Recover $FilePath $LinkName $1 $TrashPath $TrashLogPath
     else
