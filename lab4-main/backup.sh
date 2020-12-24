@@ -21,7 +21,7 @@ then
     then
         mkdir $NewDirectory
         cp -a ~/source/. $NewDirectory
-        echo "[Date] Backup has been created successfully. Values: \n$(ls $NewDirectory)" >> ~/backup-report
+        echo "[Date] Backup has been created successfully. Values: $(ls $NewDirectory)" >> ~/backup-report
     else
         for file in $(ls ~/source)
         do
@@ -46,12 +46,11 @@ then
         Update=$(echo $New$Changes | sed 's/^\\n//')
         if [[ ! -z "$Update" ]]
         then
-            echo -e "[$Date] last backup ($LastDirectory) updated:\n$Update" >> ~/backup-report
+            echo -e "[$Date] last backup ($LastDirectory) updated: $Update" >> ~/backup-report
         fi
     fi
 else
-    echo loh
     mkdir $NewDirectory
     cp -a ~/source/. $NewDirectory
-    echo "[Date] Backup has been created successfully. Values: \n$(ls $NewDirectory)" >> ~/backup-report
+    echo "[Date] Backup has been created successfully. Values: $(ls $NewDirectory)" >> ~/backup-report
 fi
