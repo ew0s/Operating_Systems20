@@ -9,7 +9,6 @@ then
     touch ~/backup-report
 fi
 
-echo $LastDate
 if [[ -e "$HOME/Backup-$LastDate" ]]
 then
     LastDirectory=~/Backup-$LastDate
