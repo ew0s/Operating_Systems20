@@ -15,7 +15,7 @@ then
     LastDirectory=~/Backup-$LastDate
     LastSeconds=$(date -d $LastDate +"%s")
     CurrentSeconds=$(date -d $Date +"%s")
-    TimeDiff=$(echo $(($CurrentSeconds - $LastSeconds) / 60 / 60 / 24) | bc)
+    TimeDiff=$(echo "($CurrentSeconds - $LastSeconds) / 60 / 60 / 24" | bc)
 
     if [[ $TimeDiff -gt 6 ]]
     then
