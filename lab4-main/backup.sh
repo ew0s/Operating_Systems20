@@ -21,7 +21,7 @@ then
     then
         mkdir $NewDirectory
         cp -a ~/source/. $NewDirectory
-        echo "[Date] Backup has been created successfully. Values: $(ls $NewDirectory)" >> ~/backup-report
+        echo "[$Date] Backup has been created successfully. Values: $(ls $NewDirectory)" >> ~/backup-report
     else
         for file in $(ls ~/source)
         do
@@ -52,5 +52,5 @@ then
 else
     mkdir $NewDirectory
     cp -a ~/source/. $NewDirectory
-    echo "[Date] Backup has been created successfully. Values: $(ls $NewDirectory)" >> ~/backup-report
+    echo "[$Date] Backup has been created successfully. Values: $(ls $NewDirectory)" >> ~/backup-report
 fi
