@@ -9,6 +9,7 @@ if [[ ! -f "~/backup-report" ]]; then
 fi
 
 echo $LastUpdateDate
+echo $NewDirectory
 
 if [[ -z $LastUpdateDate ]]; then
     mkdir $NewDirectory
