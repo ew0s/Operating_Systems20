@@ -60,13 +60,13 @@ do
 done
 
 if [[ ! -z $NewFilesLog || ! -z $ChangedFilesLog ]]; then
-    echo -e "[$CurrentDate] Last backup ($LastBackupDirectory); Updated\n"
+    echo -e "[$CurrentDate] Last backup ($LastBackupDirectory); Updated" >> ~/backup-report
 
     if [[ ! -z $NewFilesLog ]]; then
-        echo -e "$NewFilesLog\n"
+        echo -e "$NewFilesLog" >> ~/backup-report
     fi
 
     if [[ ! -z $ChangedFilesLog ]]; then
-        echo -e "$ChangedFilesLog\n"
+        echo -e "$ChangedFilesLog" >> ~/backup-report
     fi
 fi
