@@ -60,4 +60,4 @@ do
 done
 
 UpdatedFilesLog=$(echo -e "$NewFilesLog\n$ChangedFilesLog")
-echo $UpdatedFilesLog
+echo -e $UpdatedFilesLog
