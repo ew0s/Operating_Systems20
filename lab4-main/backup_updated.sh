@@ -59,5 +59,14 @@ do
     fi
 done
 
-UpdatedFilesLog=$(echo -e "$NewFilesLog\n$ChangedFilesLog")
-echo -e $UpdatedFilesLog
+if [[ ! -z $NewFilesLog || ! -z $ChangedFilesLog ]]; then
+    echo -e "[$CurrentDate] Last backup ($LastBackupDirectory); Updated\n"
+
+    if [[ ! -z $NewFilesLog ]]; then
+        echo -e "$NewFilesLog\n"
+    fi
+
+    if [[ ! -z $ChangedFilesLog ]]; then
+        echo -e "$ChangedFilesLog\n"
+    fi
+fi
