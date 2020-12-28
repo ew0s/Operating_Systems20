@@ -14,25 +14,8 @@ function CopyNewFile
 {
     local File=$1
     local LastBackupDirectory=$2
-    local NewFilesLog=$3
 
     cp ~/source/$File $LastBackupDirectory
-    NewFilesLog="$NewFilesLog\nNew file: $File"
-
-    return "$NewFilesLog"
-}
-
-function CopyChangedFile
-{
-    local File=$1
-    local LastBackupDirectory=$2
-    local ChangedFilesLog=$3
-    local CurrentDate=$4
-
-    cp ~/source/$File $LastBackupDirectory
-    ChangedFilesLog="$ChangedFilesLog\nOutdate: $File.$CurrentDate; Up to date: $File"
-
-    return "$ChangedFilesLog"
 }
 
 CurrentDate=$(date +"%Y-%m-%d")
