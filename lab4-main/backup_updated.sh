@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CurrentDate=$(date +"%Y-%m-%d")
-NewDirectory=~/Backup-$date
+NewDirectory=~/Backup-$CurrentDate
 LastUpdateDate=$(find ~ -name "Backup*" | awk 'BEGIN{FS="-"}{print $2"-"$3"-"$4}' | sort -nr | head -1)
 
 if [[ ! -f "~/backup-report" ]]; then
