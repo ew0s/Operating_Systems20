@@ -1,58 +1,72 @@
 #!/bin/bash
 
-Date=$(date +"%Y-%m-%d")
-NewDirectory=~/Backup-$Date
-LastDate=$(find ~ -name "Backup*" | awk 'BEGIN{FS="-"}{print $2"-"$3"-"$4}' | sort -nr | head -1)
+function CreateNewBackup
+{
+    local NewDirectory=$1
+    local CurrentDate=$2
 
-if [[ ! -f "~/backup-report" ]]
-then
+    mkdir $NewDirectory
+    cp -a ~/source/. $NewDirectory
+    echo -e "[$CurrentDate] Backup has created successfully.\nNew values:\n$(ls $NewDirectory)" >> ~/backup-report
+}
+
+function CopyFile
+{
+    local File=$1
+    local LastBackupDirectory=$2
+
+    cp ~/source/$File $LastBackupDirectory
+}
+
+CurrentDate=$(date +"%Y-%m-%d")
+NewDirectory=~/Backup-$CurrentDate
+LastUpdateDate=$(find ~ -name "Backup*" | awk 'BEGIN{FS="-"}{print $2"-"$3"-"$4}' | sort -nr | head -1)
+
+if [[ ! -f "~/backup-report" ]]; then
     touch ~/backup-report
 fi
 
-if [[ -e "$HOME/Backup-$LastDate" ]]
-then
-    LastDirectory=~/Backup-$LastDate
-    LastSeconds=$(date -d $LastDate +"%s")
-    CurrentSeconds=$(date -d $Date +"%s")
-    TimeDiff=$(echo "($CurrentSeconds - $LastSeconds) / 60 / 60 / 24" | bc)
+if [[ -z $LastUpdateDate ]]; then
+    CreateNewBackup $NewDirectory $CurrentDate 
+    exit 0
+fi
 
-    if [[ $TimeDiff -gt 6 ]]
-    then
-        mkdir $NewDirectory
-        cp -a ~/source/. $NewDirectory
-        echo "[$Date] Backup has been created successfully. Values: $(ls $NewDirectory)" >> ~/backup-report
+LastBackupDirectory=~/Backup-$LastUpdateDate
+LastBackupSeconds=$(date -d $LastUpdateDate +"%s")
+CurrentSeconds=$(date -d $CurrentDate +"%s")
+DayDifference=$(echo "($CurrentSeconds - $LastBackupSeconds) / 60 / 60 / 24" | bc)
+
+if [[ $DayDifference -gt 6 ]]; then
+    CreateNewBackup $NewDirectory $CurrentDate
+    exit 0
+fi
+
+for file in $(ls ~/source)
+do
+    if [[ ! -f $LastBackupDirectory/$file ]]; then
+        CopyFile $file $LastBackupDirectory
+        NewFilesLog="$NewFilesLog\nNew file: $file"
     else
-        for file in $(ls ~/source)
-        do
-            if [[ -f $LastDirectory/$file ]]
-            then
-                SourceSiZe=$(wc -c ~/source/$file | awk '{print $1}')
-                LastSourceSize=$(wc -c $LastDirectory/$file | awk '{print $1}')
-                SizeDiff=$(echo "$SourceSize - $LastSourceSize" | bc)
+        SourceFileSize=$(wc -c ~/source/$file | awk '{print $1}')
+        LastBackupFileSize=$(wc -c $LastBackupDirectory/$file | awk '{print $1}')
+        SizeDifference=$(echo "$SourceFileSize - $LastBackupFileSize" | bc)
 
-                if [[ $SizeDiff -ne 0 ]]
-                then
-                    mv $LastDirectory/$file $LastDirectory/$file.$Date
-                    cp ~/source/$file $LastDirectory
-                    Changes="$Changes\nOutdate: $file.$Date; Up to date: $file"
-                fi
-            else
-                cp ~/source/$file $LastDirectory
-                New="$New\nNew: $file"
-            fi
-        done
-
-        echo $New
-        echo $Changes
-
-        Update=$(echo $New$Changes | sed 's/^\\n//')
-        if [[ ! -z "$Update" ]]
-        then
-            echo -e "[$Date] last backup ($LastDirectory) updated: $Update" >> ~/backup-report
+        if [[ $SizeDifference -ne 0 ]]; then
+            mv $LastBackupDirectory/$file $LastBackupDirectory/$file.$CurrentDate
+            CopyFile $file $LastBackupDirectory
+            ChangedFilesLog="$ChangedFilesLog\nChanged file: $file.$CurrentDate; Up to date: $file"
         fi
     fi
-else
-    mkdir $NewDirectory
-    cp -a ~/source/. $NewDirectory
-    echo "[$Date] Backup has been created successfully. Values: $(ls $NewDirectory)" >> ~/backup-report
+done
+
+if [[ ! -z $NewFilesLog || ! -z $ChangedFilesLog ]]; then
+    echo -e "[$CurrentDate] Last backup ($LastBackupDirectory); Updated" >> ~/backup-report
+
+    if [[ ! -z $NewFilesLog ]]; then
+        echo -e "$NewFilesLog" >> ~/backup-report
+    fi
+
+    if [[ ! -z $ChangedFilesLog ]]; then
+        echo -e "$ChangedFilesLog" >> ~/backup-report
+    fi
 fi
