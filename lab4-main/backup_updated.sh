@@ -14,5 +14,5 @@ echo $NewDirectory
 if [[ -z $LastUpdateDate ]]; then
     mkdir $NewDirectory
     cp -a ~/source/. $NewDirectory
-    echo -e "[$Date] Backup has created successfully.\n\tNew values: $(ls $NewDirectory)" >> ~/backup-report
+    echo -e "[$CurrentDate] Backup has created successfully.\nNew values:\n $(ls $NewDirectory)" >> ~/backup-report
 fi
