@@ -26,7 +26,7 @@ then
         do
             if [[ -f $LastDirectory/$file ]]
             then
-                SourceSize=$(wc -c ~/source/$file | awk '{print $1}')
+                SourceSiZe=$(wc -c ~/source/$file | awk '{print $1}')
                 LastSourceSize=$(wc -c $LastDirectory/$file | awk '{print $1}')
                 SizeDiff=$(echo "$SourceSize - $LastSourceSize" | bc)
 
@@ -41,6 +41,9 @@ then
                 New="$New\nNew: $file"
             fi
         done
+
+        echo $New
+        echo $Changes
 
         Update=$(echo $New$Changes | sed 's/^\\n//')
         if [[ ! -z "$Update" ]]

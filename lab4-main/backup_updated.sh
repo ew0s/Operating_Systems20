@@ -29,7 +29,7 @@ function CopyChangedFile
     local ChangedFilesLog=$3
     local CurrentDate=$4
 
-    cp ~/source/$File $LastBackupDirectoryi
+    cp ~/source/$File $LastBackupDirectory
     ChangedFilesLog="$ChangedFilesLog\nOutdate: $File.$CurrentDate; Up to date: $File"
 
     return "$ChangedFilesLog"
