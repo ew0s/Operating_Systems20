@@ -10,7 +10,7 @@ function CreateNewBackup
     echo -e "[$CurrentDate] Backup has created successfully.\nNew values:\n$(ls $NewDirectory)" >> ~/backup-report
 }
 
-function CopyFile
+function CopyNewFile
 {
     local File=$1
     local LastBackupDirectory=$2
@@ -20,6 +20,19 @@ function CopyFile
     NewFilesLog="$NewFilesLog\nNew file: $File"
 
     return "$NewFilesLog"
+}
+
+function CopyChangedFile
+{
+    local File=$1
+    local LastBackupDirectory=$2
+    local ChangedFilesLog=$3
+    local CurrentDate=$4
+
+    cp ~/source/$File $LastBackupDirectoryi
+    ChangedFilesLog="$ChangedFilesLog\nOutdate: $File.$CurrentDate; Up to date: $File"
+
+    return "$ChangedFilesLog"
 }
 
 CurrentDate=$(date +"%Y-%m-%d")
@@ -48,7 +61,17 @@ fi
 for file in $(ls ~/source)
 do
     if [[ ! -f $LastBackupDirectory/$file ]]; then
-        NewFilesLog=$( CopyFile $file $LastBackupDirectory $NewFilesLog)
-    fi
+        NewFilesLog=$( CopyNewFile $file $LastBackupDirectory $NewFilesLog)
+    else
+        SourceFileSize=$(wc -c ~/source/$file | awk '{print $1}')
+        LastBackupFileSize=$(wc -c $LastBackupDirectory/$file | awk '{print $1}')
+        SizeDifference=$(echo "$SourceFileSize - $LastBackupFileSize" | bc)
+
+        if [[ $SizeDifference -ne 0 ]]; then
+            mv $LastBackupDirectory/$file $LastBackupDirectory/$file.$CurrentDate
+            ChangedFilesLog=$( CopyChangedFile $file $LastBackupDirectory $ChangedFilesLog $CurrentDate)
+        fi
 done
 
+echo -e $NewFilesLog
+echo -e $ChangedFilesLog
