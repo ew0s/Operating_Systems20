@@ -71,6 +71,7 @@ do
             mv $LastBackupDirectory/$file $LastBackupDirectory/$file.$CurrentDate
             ChangedFilesLog=$( CopyChangedFile $file $LastBackupDirectory $ChangedFilesLog $CurrentDate)
         fi
+    fi
 done
 
 echo -e $NewFilesLog
