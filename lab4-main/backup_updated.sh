@@ -59,5 +59,5 @@ do
     fi
 done
 
-echo -e $NewFilesLog
-echo -e $ChangedFilesLog
+UpdatedFilesLog=$(echo -e "$NewFilesLog\n$ChangedFilesLog")
+echo $UpdatedFilesLog
