@@ -18,5 +18,5 @@ fi
 LastBackup=~/Backup-$LastUpdateDate
 LastBackupSeconds=$(date -d $LastUpdateDate +"%s")
 CurrentSeconds=$(date -d $CurrentDate +"%s")
-DayDifference=$(echo ($CurrentSeconds - $LastBackupSeconds / 60 / 60 / 24))
+DayDifference=$(echo "($CurrentSeconds - $LastBackupSeconds) / 60 / 60 / 24" | bc)
 echo $DayDifference
