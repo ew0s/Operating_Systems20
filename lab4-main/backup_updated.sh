@@ -19,7 +19,7 @@ function CopyFile
     cp ~/source/$File $LastBackupDirectory
     NewFilesLog="$NewFilesLog\nNew file: $File"
 
-    return $NewFilesLog
+    return "$NewFilesLog"
 }
 
 CurrentDate=$(date +"%Y-%m-%d")
